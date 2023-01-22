@@ -1,11 +1,11 @@
 import { BookList } from "../BookList/BookList";
 import { TotalPrice } from "../TotalPrice/TotalPrice";
 
-export function Composant3({ books }) {
+export function Composant3() {
   return (
     <>
-      <BookList books={books} />
-      <TotalPrice books={books} />
+      <BookList />
+      <TotalPrice />
     </>
   );
 }
