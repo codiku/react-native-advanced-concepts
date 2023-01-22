@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { Composant1 } from "./components/Composant1";
+import { Composant1 } from "./components/Composant1/Composant1";
 
 export default function App() {
   const [books, setBooks] = useState([
@@ -11,9 +12,13 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={s.main}>
         <Composant1 books={books} />
       </SafeAreaView>
     </SafeAreaProvider>
   );
 }
+
+const s = StyleSheet.create({
+  main: { flex: 1, justifyContent: "center", alignItems: "center" },
+});

@@ -1,5 +1,11 @@
-import { Composant4 } from "../Composant4/Composant4";
+import { BookList } from "../BookList/BookList";
+import { TotalPrice } from "../TotalPrice/TotalPrice";
 
 export function Composant3({ books }) {
-  return <Composant4 books={books} />;
+  return (
+    <>
+      <BookList books={books} />
+      <TotalPrice books={books} />
+    </>
+  );
 }
