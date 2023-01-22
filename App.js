@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Composant1 } from "./components/Composant1/Composant1";
 import { BookContext } from "./contexts/BookContext";
-
 export default function App() {
   const [currency, setCurrency] = useState("$");
   const [books, setBooks] = useState([
@@ -13,13 +12,13 @@ export default function App() {
   ]);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={s.main}>
-        <BookContext.Provider value={{ books, currency, setCurrency }}>
-          <Composant1 books={books} />
-        </BookContext.Provider>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <BookContext.Provider value={{ books, currency, setCurrency }}>
+      <SafeAreaProvider>
+        <SafeAreaView style={s.main}>
+          <Composant1 />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </BookContext.Provider>
   );
 }
 

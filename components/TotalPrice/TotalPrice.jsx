@@ -14,7 +14,7 @@ export function TotalPrice() {
         Prix total : {totalPrice} {currency}
       </Text>
       <TouchableOpacity onPress={() => setCurrency("€")}>
-        <Text>Changer en euros</Text>
+        <Text>Changer vers euros</Text>
       </TouchableOpacity>
     </>
   );
