@@ -1,43 +1,40 @@
-import { useRef } from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import { s } from "./App.style";
+import * as ImagePicker from "expo-image-picker";
+
 export default function App() {
-  const refCardExpirationInput = useRef();
-  const refCodeInput = useRef();
-
-  function onCardNumberChange(text) {
-    if (text.length >= 16) {
-      refCodeInput.current.focus();
+  const [imageURIList, setImageURIList] = useState([]);
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setImageURIList([...imageURIList, result.assets[0]]);
+    } else {
+      alert("You did not select any image.");
     }
-  }
-
-  function onCodeChange(text) {
-    if (text.length >= 3) {
-      refCardExpirationInput.current.focus();
-    }
-  }
+  };
+  console.log(imageURIList);
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={s.main}>
-        <TextInput
-          onChangeText={onCardNumberChange}
-          placeholder="Numéro de carte"
-        />
-        <TextInput
-          ref={refCodeInput}
-          onChangeText={onCodeChange}
-          placeholder="Code secret"
-        />
-
-        <TextInput
-          ref={refCardExpirationInput}
-          placeholder="Date d'expiration"
-        />
+      <SafeAreaView style={{ flex: 1 }}>
+        <Text style={s.title}>Mes photos préférées</Text>
+        <View style={s.body}>
+          <ScrollView>
+            {imageURIList.map(({ uri }, i) => (
+              <Image key={uri + i} style={s.image} source={{ uri }} />
+            ))}
+          </ScrollView>
+        </View>
+        <View style={s.footer}>
+          <TouchableOpacity style={s.btn} onPress={pickImageAsync}>
+            <Text style={s.btnTxt}>Ajouter photo</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 }
-
-const s = StyleSheet.create({
-  main: { flex: 1, justifyContent: "center", alignItems: "center" },
-});
