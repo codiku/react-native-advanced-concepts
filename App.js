@@ -5,32 +5,14 @@ import { s } from "./App.style";
 import * as ImagePicker from "expo-image-picker";
 
 export default function App() {
-  const [imageURIList, setImageURIList] = useState([]);
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-    });
-    if (!result.canceled) {
-      setImageURIList([...imageURIList, result.assets[0]]);
-    } else {
-      alert("You did not select any image.");
-    }
-  };
-  console.log(imageURIList);
+ 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <Text style={s.title}>Mes photos préférées</Text>
-        <View style={s.body}>
-          <ScrollView>
-            {imageURIList.map(({ uri }, i) => (
-              <Image key={uri + i} style={s.image} source={{ uri }} />
-            ))}
-          </ScrollView>
-        </View>
+        <View style={s.body}></View>
         <View style={s.footer}>
-          <TouchableOpacity style={s.btn} onPress={pickImageAsync}>
+          <TouchableOpacity style={s.btn} onPress={()=>""}>
             <Text style={s.btnTxt}>Ajouter photo</Text>
           </TouchableOpacity>
         </View>
