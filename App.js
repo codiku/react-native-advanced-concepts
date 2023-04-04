@@ -25,7 +25,11 @@ export default function App() {
         <View style={s.body}>
           <ScrollView>
             {imageURIList.map((imageURI, i) => (
-              <Image key={imageURI + i} style={s.image} source={{ uri: imageURI }} />
+              <Image
+                key={imageURI + i}
+                style={s.image}
+                source={{ uri: imageURI }}
+              />
             ))}
           </ScrollView>
         </View>
