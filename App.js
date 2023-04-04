@@ -12,7 +12,7 @@ export default function App() {
       quality: 1,
     });
     if (!result.canceled) {
-      setImageURIList([...imageURIList, result.assets[0]]);
+      setImageURIList([...imageURIList, result.assets[0].uri]);
     } else {
       alert("You did not select any image.");
     }
@@ -24,8 +24,8 @@ export default function App() {
         <Text style={s.title}>Mes photos préférées</Text>
         <View style={s.body}>
           <ScrollView>
-            {imageURIList.map(({ uri }, i) => (
-              <Image key={uri + i} style={s.image} source={{ uri }} />
+            {imageURIList.map((imageURI, i) => (
+              <Image key={imageURI + i} style={s.image} source={{ uri: imageURI }} />
             ))}
           </ScrollView>
         </View>
