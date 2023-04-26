@@ -1,9 +1,9 @@
 import { Text } from "react-native";
 
-export function Component4({ books }) {
+export function BookList({ books }) {
   return (
     <>
-      <Text>Liste de livres</Text>
+      <Text style={{ marginBottom: 20 }}>Book list</Text>
       {books.map((book) => (
         <Text key={book.id}>
           {book.title} - {book.price}
