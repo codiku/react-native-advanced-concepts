@@ -2,8 +2,10 @@ import { useState } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Component1 } from "./components/Component1/Component1";
 import { StyleSheet } from "react-native";
+import { BookContext } from "./contexts/BookContext";
 
 export default function App() {
+  const [currency, setCurrency] = useState("$");
   const [books, setBooks] = useState([
     { id: 1, title: "Lord of the rings", price: 9.99 },
     { id: 2, title: "Harry potter", price: 7.8 },
@@ -11,11 +13,13 @@ export default function App() {
   ]);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={s.root}>
-        <Component1 books={books} />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <BookContext.Provider value={{ books, currency, setCurrency }}>
+      <SafeAreaProvider>
+        <SafeAreaView style={s.root}>
+          <Component1 />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </BookContext.Provider>
   );
 }
 
