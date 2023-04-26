@@ -1,6 +1,6 @@
 import { Text } from "react-native";
 
-export function Composant4({ books }) {
+export function Component4({ books }) {
   return (
     <>
       <Text>Liste de livres</Text>
